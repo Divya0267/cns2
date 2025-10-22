@@ -1,33 +1,37 @@
 import java.security.*;
-import java.nio.charset.StandardCharsets;
 import java.util.Base64;
+
 public class DigitalSignature {
-public static void main(String[] args) throws Exception {
-var keyPair = KeyPairGenerator.getInstance("DSA");keyPair.initialize(2048);
-var kp=keyPair.generateKeyPair();
-String originalText = "This is the message to be digitally signed.";
-byte[] signature = sign(originalText, kp.getPrivate());
-System.out.println("Original Text: " + originalText);
-System.out.println("Signature: " +Base64.getEncoder().encodeToString(signature));
-System.out.println("Signature Verified: " + verify(originalText, signature,
-kp.getPublic()));
-String tamperedText = "This is a tampered message.";
-System.out.println("Tampered Signature Verified: " + verify(tamperedText, signature,
-kp.getPublic()));
+    static byte[] sign(String msg, PrivateKey k) throws Exception {
+        var s = Signature.getInstance("SHA256withDSA");
+        s.initSign(k);
+        s.update(msg.getBytes());
+        return s.sign();
+    }
+
+    static boolean verify(String msg, byte[] sigBytes, PublicKey k) throws Exception {
+        var s = Signature.getInstance("SHA256withDSA");
+        s.initVerify(k);
+        s.update(msg.getBytes());
+        return s.verify(sigBytes);
+    }
+
+    public static void main(String[] args) throws Exception {
+        var kpg = KeyPairGenerator.getInstance("DSA");
+        kpg.initialize(2048);
+        var kp = kpg.generateKeyPair();
+
+        String msg = "This is the message to be digitally signed.";
+        byte[] sig = sign(msg, kp.getPrivate());
+
+        System.out.println("Original: " + msg);
+        System.out.println("Signature: " + Base64.getEncoder().encodeToString(sig));
+        System.out.println("Verified: " + verify(msg, sig, kp.getPublic()));
+        System.out.println("Tampered Verified: " + verify("This is a tampered message.", sig, kp.getPublic()));
+    }
 }
-static byte[] sign(String data, PrivateKey key) throws Exception {
-Signature sig = Signature.getInstance("SHA256withDSA");
-sig.initSign(key);
-sig.update(data.getBytes(StandardCharsets.UTF_8));
-return sig.sign();
-}
-static boolean verify(String data, byte[] signature, PublicKey key) throws Exception {
-Signature sig = Signature.getInstance("SHA256withDSA");
-sig.initVerify(key);
-sig.update(data.getBytes(StandardCharsets.UTF_8));
-return sig.verify(signature);
-}
-}
+
+
 Output:
 Original Text: This is the message to be digitally signed.
 Signature (Base64):
