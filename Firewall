@@ -1,43 +1,43 @@
-Aim: Study of the features of firewall in providing network security and to set Firewall
-Security in windows.
+Aim: Study of the features of firewall in providing network security and to set Firewall Security in windows.
+### 🔹 **1. What is a Firewall?**
+* A firewall protects a computer by **blocking unauthorized access** and **allowing safe communication**.
+* It monitors **incoming and outgoing network traffic**.
 
-Firewall in Windows
-Windows comes with two firewalls that work together. One is the Windows Firewall, and
-the other is Windows Firewall with Advanced Security (WFAS). The main difference
-between them is the complexity of the rules configuration. Windows Firewall uses simple
-rules that directly relate to a program or a service. The rules in WFAS can be configured
-based on protocols, ports, addresses and authentication. By default, both firewalls come with
-predefined set of rules that allow us to utilize network resources. This includes things like
-browsing the web, receiving e-mails, etc. Other standard firewall exceptions are File and
-Printer Sharing, Network Discovery, Performance Logs and Alerts, Remote
-Administration, Windows Remote Management, Remote Assistance, Remote Desktop,
-Windows Media Player, Windows Media Player Network Sharing Service With firewall in
-Windows 7 we can configure inbound and outbound rules. By default, all outbound traffic is
-allowed, and inbound responses to that traffic are also allowed. Inbound traffic initiated from
-external sources is automatically blocked.
-Sometimes we will see a notification about a blocked program which is trying to access
-network resources. In that case we will be able to add an exception to our firewall in order to
-allow traffic from the program in the future.
-Windows 7 comes with some new features when it comes to firewall. For example, "fullstealth" feature blocks other computers from performing operating system fingerprinting. OS
-fingerprinting is a malicious technique used to determine the operating system running on
-the host machine. Another feature is "boot-time filtering". This feature ensures that the
-firewall is working at the same time when the network interface becomes active, which was
-not the case in previous versions of Windows.
-When we first connect to some network, we are prompted to select a network location.
-This feature is known as Network Location Awareness (NLA). This feature enables us to
-assign a network profile to the connection based on the location. Different network profiles
-contain different collections of firewall rules. In Windows 7, different network profiles can
-be configured on different interfaces. For example, our wired interface can have different
-profile than our wireless interface. There are three different network profiles available:
- Public
- Home/Work - private network
- Domain - used within a domain
-We choose those locations when we connect to a network. We can always change the
-location in the Network and Sharing Center, in Control Panel. The Domain profile can be
-automatically assigned by the NLA service when we log on to an Active Directory domain.
-Note that we must have administrative rights in order to configure firewall in Windows 7.
-To open Windows Firewall we can go to Start > Control Panel > Windows Firewall.
-By default, Windows Firewall is enabled for both private (home or work) and public
-networks. It is also configured to block all connections to programs that are not on the list of
-allowed programs. To configure exceptions we can go to the menu on the left and select
-"Allow a program or feature trough Windows Firewall" option
+### 🔹 **2. Types of Firewalls in Windows**
+* **Windows Firewall** – basic version, allows or blocks programs/services.
+* **Windows Firewall with Advanced Security (WFAS)** – advanced version; allows configuration based on **ports, IP addresses, and protocols**.
+
+### 🔹 **3. Default Firewall Rules**
+* Allows safe activities like:
+  * Web browsing
+  * Email
+  * File & Printer sharing
+  * Remote desktop and management
+* **Outbound traffic** = allowed by default.
+* **Inbound traffic** = blocked unless it’s a response to an allowed request.
+
+### 🔹 **4. Handling Blocked Programs**
+* If a program tries to access the network and is blocked,
+  → Windows shows a notification.
+  → You can add an **exception** to allow it in the future.
+
+### 🔹 **5. New Features in Windows 7 Firewall**
+* **Full-Stealth Mode** – hides your system from hackers performing OS fingerprinting.
+* **Boot-time Filtering** – firewall starts as soon as the network interface becomes active.
+* **Network Location Awareness (NLA)** – automatically assigns security rules based on the network type.
+
+### 🔹 **6. Network Profiles**
+1. **Public** – most restrictive (for cafés, airports).
+2. **Home/Work (Private)** – for trusted networks.
+3. **Domain** – for computers connected to a corporate network (Active Directory).
+Each profile has different firewall settings.
+
+### 🔹 **7. How to Open and Configure Firewall**
+1. Click **Start → Control Panel → Windows Firewall**.
+2. Check if it’s **ON** for both private and public networks.
+3. To allow a program:
+   * Click **“Allow a program or feature through Windows Firewall.”**
+   * Check the program and choose which network (Public/Private) to allow.
+
+### 🔹 **8. Admin Rights**
+* You must have **administrator privileges** to change firewall settings.
