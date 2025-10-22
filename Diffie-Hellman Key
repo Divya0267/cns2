@@ -1,0 +1,62 @@
+import javax.crypto.KeyAgreement;
+import javax.crypto.interfaces.DHPublicKey;
+import java.security.*;
+import java.util.Base64;
+public class Diffie {
+public static void main(String[] args) throws Exception {
+KeyPairGenerator kpg = KeyPairGenerator.getInstance("DH");
+kpg.initialize(2048);
+KeyPair a = kpg.generateKeyPair();
+System.out.println("Alice Public: " +
+Base64.getEncoder().encodeToString(a.getPublic().getEncoded()));
+DHPublicKey pubA = (DHPublicKey) a.getPublic();
+kpg.initialize(pubA.getParams());
+KeyPair b = kpg.generateKeyPair();
+System.out.println("Bob Public: " +
+Base64.getEncoder().encodeToString(b.getPublic().getEncoded()));
+KeyAgreement kaA = KeyAgreement.getInstance("DH");
+kaA.init(a.getPrivate());
+kaA.doPhase(b.getPublic(), true);
+byte[] secretA = kaA.generateSecret();
+KeyAgreement kaB = KeyAgreement.getInstance("DH");
+kaB.init(b.getPrivate());
+kaB.doPhase(a.getPublic(), true);
+byte[] secretB = kaB.generateSecret();
+System.out.println("Shared Secret: "+Base64.getEncoder().encodeToString(secretA));
+System.out.println("Secrets match: " + MessageDigest.isEqual(secretA, secretB));
+}
+}
+
+
+Output:
+Alice Public:
+MIICKTCCARsGCSqGSIb3DQEDATCCAQwCggEBAP//////////yQ/aoiFowjTExmKLgNwc
+0SkCTgiKZ8x0Agu+pjsTmyJRSgh5jjQE3e+VGbPNOkMbMCsKbfJfFDdP4TVtbVHCReSF
+tXZiXn7G9ExC6aY37WsL/1y29Aa37e44a/taiZ+lrp8kEXxLH+ZJKGZR7ORbPcIAfLihY78
+FmNpINhxV05ppFj+o/STPX4NlXSPco62WHGLzViCFUrue1SkHcJaWbWcMNU5KvJgE8
+XRsCMoYIXwykF5GLjbOO+OedywYDoYDmyeDouwHoo+1xV3wb0xSyd4ry/aVWBcYO
+ZVJfOqVauUV0iYYmPoFEBVyjlqKrKpo//////////8CAQICAgQAA4IBBgACggEBAJBysFlA
++x4EWv3719XYjPRik6yU8RI+ZMuJUh25Lb8eAqs45O9/JFVBOFaaG+bDDUZncNYHflL
+07eoDWn2i4saPA2K46Qw7Wk+LHwvHYehkRkI4FzHwy9qKXBxoT69FEC7PDVeVjrh1w
+v7Ot83gU1wIazXIjmk7dZfX1zV4uhR8gucnyoKpAi8GLSzAfHs5v5MbjqHtmzjN5XmEBw
+dCZXJc/eUvknGH//rzAsB5V96pof5QOXyb1dDxb0ygeF+/GN+Wu40omr1JJwF7uGP/dle2
+wf/hkfHvQRRYjT5DN3qprd+Peb7ySt8QDo1YOMee7yu+VGjQXhO7Nx9WX3oYu38=
+Bob Public:
+MIICKTCCARsGCSqGSIb3DQEDATCCAQwCggEBAP//////////yQ/aoiFowjTExmKLgNwc
+0SkCTgiKZ8x0Agu+pjsTmyJRSgh5jjQE3e+VGbPNOkMbMCsKbfJfFDdP4TVtbVHCReSF
+tXZiXn7G9ExC6aY37WsL/1y29Aa37e44a/taiZ+lrp8kEXxLH+ZJKGZR7ORbPcIAfLihY78
+FmNpINhxV05ppFj+o/STPX4NlXSPco62WHGLzViCFUrue1SkHcJaWbWcMNU5KvJgE8
+XRsCMoYIXwykF5GLjbOO+OedywYDoYDmyeDouwHoo+1xV3wb0xSyd4ry/aVWBcYO
+ZVJfOqVauUV0iYYmPoFEBVyjlqKrKpo//////////8CAQICAgQAA4IBBgACggEBAPVmaJ
+AZaBtRBaJf7UgsF700lFuFQFafwqhlkhubdFpEI2+UfDxIhX4Q9s02M5uCqilIRB2hW5T/8u
+rVPRYku6edTv8clnb2Qlp684Nbjr9eR9YHBLoK+dYyjfY4WOfxW4WmYoXz15bTY08Rhi
+xvWqnqynWGTpZgCcwRRt4LW48oRI4Tc1u8oA/hPN5wZgdepDipfVB2pUMuskbjv6vJm3
+078eKUx9fO6pFsqxVvU33CUcbuX12Zdyu/kGsFYMQaJV0WrCBCqpy0dUChI74FnCyYc
+4eMr2ifOdpzlj2hrx+wMZCjR3IpuLzGUGFnbr0tMuWP0FEioOWnEs6sONqplXg=
+Shared Secret:
+KfyAFoXgPSrQGC+jXVsJAKRmh37YOHCptf7r15WJKWdalf7aM4pYeIxGlpVcSL1xFNgf
+wqgykRJeQZKKnOLP5BqS/PyCEn8u68ijBv0JN2Qmh7JwrxjEJ0FYM53sZSqP37n+enqPvl
+Js7c0D/rVHh8wGkp3bnZ9UuO5NWOFR1ww2tzlQ/NffJDzkPa0hZH9a7Oi4I5j3MVvxcYw/
+U52fMFAxgz8zKOvsuP5J1D36PEwJEi519f4nemz928kO7lRcyLGspGid79DGDNp8evBp0S
+js+siFtARkIjAXtRP0JfDyk/NqXkZxz5ZXS90CgDD6mLKP41Px9DtHPeuszMSr1g==
+Secrets match: true
