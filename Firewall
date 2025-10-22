@@ -32,3 +32,12 @@ profile than our wireless interface. There are three different network profiles 
  Public
  Home/Work - private network
  Domain - used within a domain
+We choose those locations when we connect to a network. We can always change the
+location in the Network and Sharing Center, in Control Panel. The Domain profile can be
+automatically assigned by the NLA service when we log on to an Active Directory domain.
+Note that we must have administrative rights in order to configure firewall in Windows 7.
+To open Windows Firewall we can go to Start > Control Panel > Windows Firewall.
+By default, Windows Firewall is enabled for both private (home or work) and public
+networks. It is also configured to block all connections to programs that are not on the list of
+allowed programs. To configure exceptions we can go to the menu on the left and select
+"Allow a program or feature trough Windows Firewall" option
