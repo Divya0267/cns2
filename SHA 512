@@ -1,0 +1,18 @@
+import java.security.MessageDigest;
+public class SHA512 {
+public static void main(String[] args) throws Exception {
+String text = "Gowtham";
+MessageDigest md = MessageDigest.getInstance("SHA-512");
+byte[] digest = md.digest(text.getBytes());
+// Convert to hex string
+StringBuilder sb = new StringBuilder();
+for (byte b : digest) sb.append(String.format("%02x", b));
+System.out.println("SHA-512 digest: " + sb);
+}
+}
+
+
+Output:
+SHA-512 digest:
+e0d14b2ef4cffa6a1889ea9cbb6c5bf7d3209e3ece8bd71a80388139378980d91cbb37304d459f
+6aee295bb251db473680ee06307b79363cbe3fa2f71a559971
