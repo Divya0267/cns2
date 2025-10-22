@@ -1,0 +1,53 @@
+Aim - To study and ensure the security of a web browser (Mozilla Firefox).
+
+### 🔹 **1. Importance of Browser Security**
+* The browser is your **main gateway to the internet**.
+* It’s also the **first line of defence** against online threats.
+* Adjusting security settings can **protect your personal data**.
+
+### 🔹 **2. Common Browser Vulnerabilities**
+* Add-ons like **Java, Flash, ActiveX** can be risky.
+* Hackers exploit these tools to attack your PC.
+
+### 🔹 **3. Steps for Safe Browsing**
+#### **a. Deactivate ActiveX (for IE/Edge)**
+* Rarely used now; can allow malicious sites into your system.
+* Disable unless absolutely necessary.
+#### **b. Disable or Limit JavaScript**
+* Used by most sites but can also deliver malware.
+* Disable globally or **whitelist only trusted sites** like Google Docs or YouTube.
+* This reduces ads, pop-ups, and speeds up browsing.
+#### **c. Delete Cookies Regularly**
+* Cookies store login info and track browsing.
+* **First-party cookies**: from the site you visit.
+* **Third-party cookies**: from advertisers tracking you.
+* Block or delete third-party cookies often.
+* Avoid saving passwords in the browser.
+#### **d. Be Cautious with Add-ons**
+* Install only **trusted extensions** (e.g., Ad blockers).
+* Remove unnecessary ones to prevent malware injection.
+
+### 🔹 **4. Firefox Security Settings – Step-by-Step**
+#### **Step 1: Control Downloads**
+* Go to **Menu → Options → General**.
+* Under *Downloads*, check **“Always ask me where to save files.”**
+  → Prevents automatic malware downloads.
+#### **Step 2: Stop Tracking**
+* Go to **Privacy & Security → Tracking Protection.**
+* Enable **“Always apply Do Not Track.”**
+  → Stops advertisers and websites from tracking you.
+#### **Step 3: Manage History**
+* In **History**, select **“Firefox will never remember history”**
+  OR
+  Use **custom settings** → Check **“Always use private browsing mode.”**
+  → Automatically deletes history, cookies, and downloads.
+#### **Step 4: Improve Security Settings**
+* Under **Security**, ensure all options are checked:
+  * Warn you about malicious sites.
+  * Block dangerous downloads.
+  * Warn when add-ons try to install.
+  * Block deceptive content.
+#### **Step 5: Set a Master Password**
+* Under **Logins and Passwords**, set up a **Master Password**.
+  → Protects stored credentials if multiple users share the system.
+  ⚠️ **Do not let the browser remember passwords.**
